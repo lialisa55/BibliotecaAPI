@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\bibliotecaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/', function(){
+    return response()->json([
+        'Sucess' => true
+    ]);
 });
+
+Route::get('/livros', [bibliotecaController::class, 'index']);
+Route::get('/livros/{id}', [bibliotecaController::class, 'show']);
+Route::post('/livros', [bibliotecaController::class, 'store']);
+Route::put('/livros/{id}', [bibliotecaController::class, 'update']);
+Route::delete('/livros/{id]', [bibliotecaController::class, 'destroy']);

@@ -29,6 +29,7 @@ class bibliotecaController extends Controller
         $dadosLivros = $request->All();
 
         $valida = Validator::make($dadosLivros, [
+            'id' => 'required',
             'nome'=> 'required',
             'prateleira'=> 'required',
             'autor' => 'required'
@@ -39,9 +40,9 @@ class bibliotecaController extends Controller
         }
             $LivrosBanco = Livros::create($dadosLivros);
         if($LivrosBanco){
-            return 'Bebidas cadastradas ' . Response()->json([], Response::HTTP_NO_CONTENT);          
+            return 'Livro cadastradas ' . Response()->json([], Response::HTTP_NO_CONTENT);          
         }else{
-            return 'Bebidas não cadastradas '.Response()->json([], Response::HTTP_NO_CONTENT);
+            return 'Livro não cadastradas '.Response()->json([], Response::HTTP_NO_CONTENT);
         }
     }
 
